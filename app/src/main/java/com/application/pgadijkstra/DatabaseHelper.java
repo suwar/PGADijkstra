@@ -1,10 +1,9 @@
-package id.oy.dijkstrafloyd;
+package com.application.pgadijkstra;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -15,7 +14,7 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
-    private static String DB_PATH = "/data/data/id.oy.dijkstrafloyd/databases/";
+    private static String DB_PATH = "/data/data/com.application.pgadijkstra/databases/";
 
     private static String DB_NAME = "node.db";
 

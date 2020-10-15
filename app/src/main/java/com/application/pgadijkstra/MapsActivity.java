@@ -1,5 +1,6 @@
-package id.oy.dijkstrafloyd;
+package com.application.pgadijkstra;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static int[] COLOR_LINE = {Color.BLUE, Color.RED, Color.GRAY, Color.GREEN, Color.CYAN,Color.DKGRAY, Color.YELLOW,Color.LTGRAY,Color.MAGENTA, Color.BLACK};
@@ -55,6 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         final Button MapView = (Button) findViewById(R.id.buttonMapView);
         final Button SatelliteView = (Button) findViewById(R.id.buttonSatelliteView);
+        final Button PetaUtama = (Button) findViewById(R.id.buttonMain);
 
         MapView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +69,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 SatelliteView.setTag(R.id.buttonSatelliteView);
+            }
+        });
+        PetaUtama.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

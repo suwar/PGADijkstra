@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity" />
+
+    <Button
+        android:id="@+id/btnNormalView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="S" />
+
+    <Button
+        android:id="@+id/btnSatelitView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="M" />
+
+
+    <Button
+        android:id="@+id/pga"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="200dp"
+        android:scaleType="centerCrop"
+
+        android:text="H" />
+
+    <Button
+        android:id="@+id/btnProsesCariRute"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="150dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="C" />
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+

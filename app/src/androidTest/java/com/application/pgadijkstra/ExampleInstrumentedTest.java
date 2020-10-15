@@ -1,4 +1,4 @@
-package id.oy.dijkstrafloyd;
+package com.application.pgadijkstra;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

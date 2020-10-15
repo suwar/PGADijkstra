@@ -1,11 +1,6 @@
-package id.oy.dijkstrafloyd;
-
-import android.graphics.Color;
+package com.application.pgadijkstra;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.List;

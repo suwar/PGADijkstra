@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Pagar Alam Dijkstra Floyd</string>
+    <string name="app_name">Pagar Alam Tourism Maps</string>
     <string name="title_activity_maps">Pencarian Rute</string>
+    <string name="todo">TODO</string>
 </resources>

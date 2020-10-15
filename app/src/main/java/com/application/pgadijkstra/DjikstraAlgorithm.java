@@ -1,4 +1,4 @@
-package id.oy.dijkstrafloyd;
+package com.application.pgadijkstra;
 
 import java.util.ArrayList;
 
