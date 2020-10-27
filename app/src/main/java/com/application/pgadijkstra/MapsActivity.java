@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,18 +19,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static int[] COLOR_LINE = {Color.BLUE, Color.RED, Color.GRAY, Color.GREEN, Color.CYAN,Color.DKGRAY, Color.YELLOW,Color.LTGRAY,Color.MAGENTA, Color.BLACK};
     private static int[] WIDTH_LINE = {20,18,16,14,12,10,8,6,4,2};
-
-
     private GoogleMap mMap;
     private LatLng lokasiAwal;
     private LatLng lokasiTujuan;
     private int idNodeAwal;
     private int idNodeTujuan;
     private String algoritma;
-
     private TextView tvWaktuPencarian, tvJumlahNodeChecked, tvJumlahIterasi;
     private ListView lvHasilPengujian;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +76,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -89,7 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         lokasiAwal = MapManager.nodeMap.get(idNodeAwal).getPosisi();
         lokasiTujuan = MapManager.nodeMap.get(idNodeTujuan).getPosisi();
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiAwal,12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiAwal,16));
         mMap.addMarker(new MarkerOptions().position(lokasiAwal).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         mMap.addMarker(new MarkerOptions().position(lokasiTujuan).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
@@ -97,7 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         HasilKesuluruhanPengujian kesuluruhanPengujian;
 
         kesuluruhanPengujian = DjikstraAlgorithm.searchPath(MapManager.graphK,idNodeAwal,idNodeTujuan);
-
 
         tvWaktuPencarian.setText("Waktu Pencarian: "+kesuluruhanPengujian.getWaktuPencarian());
         tvJumlahIterasi.setText("Jumlah Iterasi: "+kesuluruhanPengujian.getJumlahIterasi());

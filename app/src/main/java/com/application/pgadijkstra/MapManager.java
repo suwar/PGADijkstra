@@ -3,27 +3,20 @@ package com.application.pgadijkstra;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
 
 public class MapManager {
     private static final double KECEPATAN_MAKSIMUM_0 = 11.111;  // 40 meter / second
     private static final double KECEPATAN_MAKSIMUM_1 = 8.333;  //30 meter / second
     private static final double KECEPATAN_MAKSIMUM_2 = 2.777;  // 10 meter / second
-
     private static ArrayList<Node> listLokasiAwal;
     private static ArrayList<Node> listLokasiTujuan;
-
     public static HashMap<Integer,Node> nodeMap;
     public static double[][] graph;
     public static double[][] graphK;
-
 
     private static void initLokasiAwal(){
         listLokasiAwal = new ArrayList<>();
@@ -32,6 +25,14 @@ public class MapManager {
         listLokasiAwal.add(new Node(267,"Curup Ayek Karang",new LatLng(-4.06957,103.33119)));
         listLokasiAwal.add(new Node(485,"Limestone Ayek Besemah",new LatLng(-4.03837,103.38862)));
         listLokasiAwal.add(new Node(550,"Curup Besemah",new LatLng(-4.00142,103.40843)));
+        listLokasiAwal.add(new Node(936,"Curup Maung",new LatLng(-3.98374,103.39055)));
+        listLokasiAwal.add(new Node(1115,"Green Paradise",new LatLng(-4.06856,103.1921)));
+        listLokasiAwal.add(new Node(1468,"Curup Pintu Langit",new LatLng(-4.09938,103.21393)));
+        listLokasiAwal.add(new Node(1511,"Tangga 2001",new LatLng(-4.0387,103.19039)));
+        listLokasiAwal.add(new Node(1897,"Landing Paralayang",new LatLng(-4.0242,103.16818)));
+        listLokasiAwal.add(new Node(2099,"Tugu Rimau",new LatLng(-4.02452,103.15448)));
+        listLokasiAwal.add(new Node(2156,"Curup Alap-Alap",new LatLng(-4.01799,103.18422)));
+        listLokasiAwal.add(new Node(2157,"Curup Tujuh Kenangan",new LatLng(-4.01775,103.18445)));
         listLokasiAwal.add(new Node(2160,"Curup Sendang Derajad",new LatLng(-4.01726,103.18553)));
         listLokasiAwal.add(new Node(2187,"Curup Mangkok",new LatLng(-4.01356,103.18866)));
         listLokasiAwal.add(new Node(2198,"Curup Embun",new LatLng(-4.01559,103.1955)));
@@ -46,6 +47,14 @@ public class MapManager {
         listLokasiTujuan.add(new Node(267,"Curup Ayek Karang",new LatLng(-4.06957,103.33119)));
         listLokasiTujuan.add(new Node(485,"Limestone Ayek Besemah",new LatLng(-4.03837,103.38862)));
         listLokasiTujuan.add(new Node(550,"Curup Besemah",new LatLng(-4.00142,103.40843)));
+        listLokasiTujuan.add(new Node(936,"Curup Maung",new LatLng(-3.98374,103.39055)));
+        listLokasiTujuan.add(new Node(1115,"Green Paradise",new LatLng(-4.06856,103.1921)));
+        listLokasiTujuan.add(new Node(1468,"Curup Pintu Langit",new LatLng(-4.09938,103.21393)));
+        listLokasiTujuan.add(new Node(1511,"Tangga 2001",new LatLng(-4.0387,103.19039)));
+        listLokasiTujuan.add(new Node(1897,"Landing Paralayang",new LatLng(-4.0242,103.16818)));
+        listLokasiTujuan.add(new Node(2099,"Tugu Rimau",new LatLng(-4.02452,103.15448)));
+        listLokasiTujuan.add(new Node(2156,"Curup Alap-Alap",new LatLng(-4.01799,103.18422)));
+        listLokasiTujuan.add(new Node(2157,"Curup Tujuh Kenangan",new LatLng(-4.01775,103.18445)));
         listLokasiTujuan.add(new Node(2160,"Curup Sendang Derajad",new LatLng(-4.01726,103.18553)));
         listLokasiTujuan.add(new Node(2187,"Curup Mangkok",new LatLng(-4.01356,103.18866)));
         listLokasiTujuan.add(new Node(2198,"Curup Embun",new LatLng(-4.01559,103.1955)));
@@ -53,8 +62,8 @@ public class MapManager {
         listLokasiTujuan.add(new Node(2523,"Tebat Reban",new LatLng(-4.01646,103.2617)));
     }
 
-    public static ArrayList<Node> getListLokasiAwal(){ //untuk membuat listlokasi awal pertama
-        if(listLokasiAwal == null){// kalu null -> bikin dl
+    public static ArrayList<Node> getListLokasiAwal(){ // untuk membuat ListLokasiAwal pertama
+        if(listLokasiAwal == null){ // kalu null -> bikin dulu
             initLokasiAwal();
         }
         return listLokasiAwal;
@@ -65,22 +74,6 @@ public class MapManager {
             initLokasiTujuan();
         }
         return listLokasiTujuan;
-    }
-
-
-
-    public static String getNamaLokasiTujuan(int id){
-        if(listLokasiTujuan == null) {
-            initLokasiTujuan();
-        }
-
-        for(int i=0; i<listLokasiTujuan.size(); i++){
-            Node nodeTujuan = listLokasiTujuan.get(i);
-            if(nodeTujuan.getId() == id)
-                return nodeTujuan.getNama();
-        }
-
-        return "";
     }
 
     public static String getNamaLokasiAwal(int id){
@@ -97,6 +90,19 @@ public class MapManager {
         return "";
     }
 
+    public static String getNamaLokasiTujuan(int id){
+        if(listLokasiTujuan == null) {
+            initLokasiTujuan();
+        }
+
+        for(int i=0; i<listLokasiTujuan.size(); i++){
+            Node nodeTujuan = listLokasiTujuan.get(i);
+            if(nodeTujuan.getId() == id)
+                return nodeTujuan.getNama();
+        }
+        return "";
+    }
+
     public static void init(Context context){
         settingNodeMap(context); // untuk seting node
         settingGraph(context);// untuk seting graph
@@ -106,48 +112,48 @@ public class MapManager {
         nodeMap = new HashMap<>(); //buat variabel map baru
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
 
-        try{
+        try {
             databaseHelper.createDataBase();
             databaseHelper.openDataBase();
             Cursor cursor = databaseHelper.getAllNode();
-            if(cursor.getCount()!=0){ //
+
+            if (cursor.getCount()!=0) { //
                 Log.v("NodeMap","Cursor "+cursor.getCount());
                 graph = new double[cursor.getCount()+1][cursor.getCount()+1];
                 graphK = new double[cursor.getCount()+1][cursor.getCount()+1];
-                if(cursor.moveToFirst()){
-                    do{
+
+                if (cursor.moveToFirst()) {
+                    do {
                         int id = cursor.getInt(0); //i = kolom
                         double lat = cursor.getDouble(1);
                         double lng = cursor.getDouble(2);
                         String name = cursor.getString(3);
-
                         Node nodeBaru = new Node(id,name, new LatLng(lat,lng));
                         nodeMap.put(id, nodeBaru);
-
-                    }while(cursor.moveToNext());
+                    } while(cursor.moveToNext());
                 }
-            }else{
+            } else {
                 Log.v("NodeMap","Cursor 0");
             }
             databaseHelper.close();
 
-        }catch(IOException e){
+        } catch(IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static void settingGraph(Context context){
+    private static void settingGraph(Context context) {
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
 
-        try{
+        try {
             databaseHelper.createDataBase();
             databaseHelper.openDataBase();
             Cursor cursor = databaseHelper.getAllEdge();
-            if(cursor.getCount()!=0){
+            if (cursor.getCount()!=0) {
                 Log.v("Graph","Cursor "+cursor.getCount());
 
-                if(cursor.moveToFirst()){
-                    do{
+                if (cursor.moveToFirst()) {
+                    do {
                         int id = cursor.getInt(0);
                         int idNodeAwal = cursor.getInt(1);
                         int idNodeTujuan = cursor.getInt(2);

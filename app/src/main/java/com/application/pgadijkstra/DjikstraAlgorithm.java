@@ -43,7 +43,7 @@ public class DjikstraAlgorithm {
             int idNodeTerdekat = -1;
             double costTerkecil = Double.POSITIVE_INFINITY;
 
-            //---Mencari Node Dengan Cost Terkecil---   //untuk uodate posisi skrng
+            //---Mencari Node Dengan Cost Terkecil---   //untuk update posisi skrng
             for (int j = 0; j < graph.length; j++) {
                 if (!isVisited[j] && cost[j] < costTerkecil) { //
                     idNodeTerdekat = j;
@@ -51,17 +51,17 @@ public class DjikstraAlgorithm {
                 }
             }
 
-            isVisited[idNodeTerdekat] = true; //memberikan tanda bahwa node it pernah dikunjungi
+            isVisited[idNodeTerdekat] = true; //memberikan tanda bahwa node itu pernah dikunjungi
 
             if (idNodeTerdekat == idNodeTujuan)
                 break;
 
             //---Update Cost---
             for (int j = 0; j < graph.length; j++) {
-                if (graph[idNodeTerdekat][j] > 0 && ((costTerkecil + graph[idNodeTerdekat][j]) < cost[j])) {  //if graft terdekat > 0 dan kost terkecil (bisa keselanjutnya) + node selanjutnya
+                if (graph[idNodeTerdekat][j] > 0 && ((costTerkecil + graph[idNodeTerdekat][j]) < cost[j])) {  //if graph terdekat > 0 dan cost terkecil (bisa keselanjutnya) + node selanjutnya
                    //untuk mengetahui bisa tidak ketujuan selanjutnya      //cost terkecil + selanjutnya untuk update
-                    parents[j] = idNodeTerdekat;                                                                //untuk update cost
-                    cost[j] = costTerkecil + graph[idNodeTerdekat][j];
+                    parents[j] = idNodeTerdekat;
+                    cost[j] = costTerkecil + graph[idNodeTerdekat][j]; // untuk update cost
 
                 }
             }
@@ -75,20 +75,11 @@ public class DjikstraAlgorithm {
         jumlahIterasi = 0;
         jumlahNodeChecked = 0;
         jarakRute = 0;
-        double[] cost = new double[graph.length]; //Untuk mencatat cost
-        boolean[] isVisited = new boolean[graph.length]; //untuk mencatat node yang sudah dikunjungi
-        int[] parents = new int[graph.length]; // untuk mencatat orang tua dari node ke-i
-
+        double[] cost; //Untuk mencatat cost
+        boolean[] isVisited; //untuk mencatat node yang sudah dikunjungi
+        int[] parents; // untuk mencatat orang tua dari node ke-i
 
         ArrayList<HasilPengujian> listHasilPengujian = new ArrayList<>();
-
-//        for(int k=0; k<idNodeTujuan.length; k++) { //untuk membuat banyak tujuan (multi destination)
-            //---Inisialisasi---  // di inisialisaikan untuk cost, isvisited, parents
-            // for (int i = 0; i < graph.length; i++) {
-            //     cost[i] = Double.POSITIVE_INFINITY;  // cosh dibuat infiniti, belum diketahui, biaya ke tempat tujuan
-            //     isVisited[i] = false; // is visited false, setiap node blm dikunjungi
-            //     parents[i] = -1; // parent -> rute yg setelah dituju. kalau udh dpet parent dia dpet nilai 1
-            // }
 
             cost = InitializeCost(graph.length);
             isVisited = InitializeVisited(graph.length);
@@ -97,38 +88,6 @@ public class DjikstraAlgorithm {
             cost[idNodeAwal] = 0;
             parents[idNodeAwal] = -1;
 
-            //---Searching Path---
-            // for (int i = 0; i < graph.length; i++) {
-            //     jumlahNodeChecked++;
-            //     jumlahIterasi++;
-
-            //     int idNodeTerdekat = -1;
-            //     double costTerkecil = Double.POSITIVE_INFINITY;
-
-            //     //---Mencari Node Dengan Cost Terkecil---   //untuk uodate posisi skrng
-            //     for (int j = 0; j < graph.length; j++) {
-            //         if (!isVisited[j] && cost[j] < costTerkecil) { //
-            //             idNodeTerdekat = j;
-            //             costTerkecil = cost[j];
-            //         }
-            //     }
-
-            //     isVisited[idNodeTerdekat] = true; //memberikan tanda bahwa node it pernah dikunjungi
-
-            //     if (idNodeTerdekat == idNodeTujuan[k])
-            //         break;
-
-            //     //---Update Cost---
-            //     for (int j = 0; j < graph.length; j++) {
-            //         if (graph[idNodeTerdekat][j] > 0 && ((costTerkecil + graph[idNodeTerdekat][j]) < cost[j])) {  //if graft terdekat > 0 dan kost terkecil (bisa keselanjutnya) + node selanjutnya
-            //            //untuk mengetahui bisa tidak ketujuan selanjutnya      //cost terkecil + selanjutnya untuk update
-            //             parents[j] = idNodeTerdekat;                                                                //untuk update cost
-            //             cost[j] = costTerkecil + graph[idNodeTerdekat][j];
-
-            //         }
-            //     }
-            // }
-
             parents = Search(graph, cost, parents, isVisited, idNodeTujuan);
 
             //---Buat Jalur---
@@ -136,12 +95,11 @@ public class DjikstraAlgorithm {
 
             //---Hasil Pengujian---
             HasilPengujian hasilPengujian = new HasilPengujian();
-            hasilPengujian.setJalur(jalur); // untuk beken jalur
+            hasilPengujian.setJalur(jalur); // untuk bikin jalur
             hasilPengujian.setCost(cost[idNodeTujuan]); // untuk waktu tempuh
             hasilPengujian.setJarakRute(jarakRute); // jarak tempuh
 
             listHasilPengujian.add(hasilPengujian);
-//        }
 
         long endTime = System.currentTimeMillis();
         long waktuPencarian = endTime - startTime;
@@ -152,12 +110,12 @@ public class DjikstraAlgorithm {
     }
 
     private static ArrayList<Node> buatJalur(int[] parents, int u, int v) {
-        jarakRute=0;
+        jarakRute = 0;
         ArrayList<Node> path = new ArrayList<>();
         path.add(MapManager.nodeMap.get(v));
 
         while(u != v){  // jika node awal bukan tujuan
-            Node asal = MapManager.nodeMap.get(v); // node asal nyo v , buat jalurnya dari tujuan ke asal
+            Node asal = MapManager.nodeMap.get(v); // node asalnyo v , buat jalurnya dari tujuan ke asal
 
             v = parents[v];
             Node tujuan = MapManager.nodeMap.get(v);

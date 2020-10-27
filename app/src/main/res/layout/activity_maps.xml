@@ -12,23 +12,24 @@
         android:layout_height="300dp"
         tools:context="com.application.pgadijkstra.MapsActivity"/>
 
-        />
-
     <Button
         android:id="@+id/buttonMapView"
-        android:text="Satellite View"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Satellite View" />
+
     <Button
         android:id="@+id/buttonSatelliteView"
-        android:text="Map View"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Map View" />
+
     <Button
         android:id="@+id/buttonMain"
         android:text="Peta Utama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/tvWaktuPencarian"
         android:layout_width="match_parent"
@@ -47,6 +48,8 @@
     <ListView
         android:id="@+id/lvHasilPengujian"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="257dp" />
 
 </LinearLayout>

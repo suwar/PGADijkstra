@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DijkstraFloyd.iml" filepath="$PROJECT_DIR$/DijkstraFloyd.iml" group="DijkstraFloyd" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PGADijkstra.iml" filepath="$PROJECT_DIR$/.idea/modules/PGADijkstra.iml" group="PGADijkstra" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PGADijkstra-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PGADijkstra-app.iml" group="PGADijkstra/app" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="DijkstraFloyd/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="PGADijkstra/app" />
     </modules>
   </component>
 </project>
