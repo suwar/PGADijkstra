@@ -17,8 +17,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    private static int[] COLOR_LINE = {Color.BLUE, Color.RED, Color.GRAY, Color.GREEN, Color.CYAN,Color.DKGRAY, Color.YELLOW,Color.LTGRAY,Color.MAGENTA, Color.BLACK};
-    private static int[] WIDTH_LINE = {20,18,16,14,12,10,8,6,4,2};
+
+    private static int[] COLOR_LINE = {Color.BLUE};
+    private static int[] WIDTH_LINE = {20};
     private GoogleMap mMap;
     private LatLng lokasiAwal;
     private LatLng lokasiTujuan;
