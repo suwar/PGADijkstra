@@ -21,6 +21,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -225,8 +227,32 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng TebatReban = new LatLng( -4.016713,103.263158);
         LatLng TuguRimau = new LatLng( -4.024452,103.154490);
 
+        LatLng HotelDharmaKarya =  new LatLng( -4.003182, 103.241757);
+        LatLng HotelFavour = new LatLng( -4.036518, 103.255588);
+        LatLng HotelGrandZZ = new LatLng( -4.012484, 103.249421);
+        LatLng HotelMirasa = new LatLng( -4.007235, 103.245288);
+        LatLng HotelTelagaBiru = new LatLng( -4.019886, 103.251040);
+        LatLng KanawaGuestHouse = new LatLng( -4.022591, 103.252921);
+        LatLng PutriSriwijayaResort = new LatLng( -4.024217, 103.180213);
+        LatLng VillaAldeoz = new LatLng( -4.084155,103.351733);
+        LatLng VillaDempoFlower = new LatLng( -4.035536,103.196132);
+        LatLng VillaexMTQPagarAlam = new LatLng( -4.038575,103.193711);
+        LatLng VillaGunungGare = new LatLng( -4.037847,103.192724);
+        LatLng WismaBara = new LatLng( -4.038814,103.219562);
+
+        LatLng BandarUdaraAtungBungsu = new LatLng( -4.025745,103.380013);
+        LatLng CVDharmaKaryaTravel = new LatLng( -4.022023,103.253632);
+        LatLng CVDimasTravel = new LatLng( -4.028729,103.258782);
+        LatLng POAnugerahWisataBusTravel = new LatLng( -4.023341,103.254264);
+        LatLng POMelatiIndahBusTravel = new LatLng( -4.023272,103.254246);
+        LatLng POSinarDempoBus = new LatLng( -4.022944,103.253444);
+        LatLng POTelagaBiruBusTravel = new LatLng( -4.019416,103.251782);
+        LatLng POTelagaIndahArmadaBus = new LatLng( -4.020615,103.248625);
+        LatLng TerminalBusNendagung = new LatLng( -4.026174,103.238405);
+
+
         mMap.addMarker(new MarkerOptions().position(AirTerjunLematang).title("Air Terjun Lematang"));
-        mMap.addMarker(new MarkerOptions().position(Curup7Kenangan).title("Curup 7 Kenangan"));
+        mMap.addMarker(new MarkerOptions().position(Curup7Kenangan).title("Curup Tujuh Kenangan"));
         mMap.addMarker(new MarkerOptions().position(CurupAirKarang).title("Curup Air Karang"));
         mMap.addMarker(new MarkerOptions().position(CurupAlapAlap).title("Curup Alap-Alap"));
         mMap.addMarker(new MarkerOptions().position(CurupBesemah).title("Curup Besemah"));
@@ -243,5 +269,28 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(Tangga2001).title("Tangga 2001"));
         mMap.addMarker(new MarkerOptions().position(TebatReban).title("Tebat Reban"));
         mMap.addMarker(new MarkerOptions().position(TuguRimau).title("Tugu Rimau"));
+
+        mMap.addMarker(new MarkerOptions().position(HotelDharmaKarya).title("Hotel Dharma Karya").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(HotelFavour).title("Hotel Favour").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(HotelGrandZZ).title("Hotel Grand ZZ").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(HotelMirasa).title("Hotel Mirasa").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(HotelTelagaBiru).title("Hotel Telaga Biru").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(KanawaGuestHouse).title("Kanawa Guest House").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(PutriSriwijayaResort).title("Putri Sriwijaya Resort").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(VillaAldeoz).title("Villa Aldeoz").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(VillaDempoFlower).title("VillaDempoFlower").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(VillaexMTQPagarAlam).title("VillaexMTQPagarAlam").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(VillaGunungGare).title("Villa Gunung Gare").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+        mMap.addMarker(new MarkerOptions().position(WismaBara).title("Wisma Bara").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
+
+        mMap.addMarker(new MarkerOptions().position(BandarUdaraAtungBungsu).title("Bandar Udara Atung Bungsu").icon(BitmapDescriptorFactory.fromResource(R.drawable.airports)));
+        mMap.addMarker(new MarkerOptions().position(CVDharmaKaryaTravel).title("CV Dharma Karya Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.cabs)));
+        mMap.addMarker(new MarkerOptions().position(CVDimasTravel).title("CV Dimas Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.cabs)));
+        mMap.addMarker(new MarkerOptions().position(POAnugerahWisataBusTravel).title("PO Anugerah Wisata Bus & Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+        mMap.addMarker(new MarkerOptions().position(POMelatiIndahBusTravel).title("PO Melati Indah Bus & Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+        mMap.addMarker(new MarkerOptions().position(POSinarDempoBus).title("PO Sinar Dempo Bus").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+        mMap.addMarker(new MarkerOptions().position(POTelagaBiruBusTravel).title("PO Telaga Biru Bus & Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+        mMap.addMarker(new MarkerOptions().position(POTelagaIndahArmadaBus).title("PO Telaga Indah Armada Bus").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
+        mMap.addMarker(new MarkerOptions().position(TerminalBusNendagung).title("Terminal Bus Nendagung").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus)));
     }
 }
