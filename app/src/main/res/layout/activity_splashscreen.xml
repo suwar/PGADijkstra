@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Splashscreen">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.application.pgadijkstra.Splashscreen">
 
     <ImageView
+        android:id="@+id/splashscreen"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/splashscreen"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent"
+        android:foregroundGravity="fill_horizontal|fill_vertical"
+        android:src="@drawable/splashscreen" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

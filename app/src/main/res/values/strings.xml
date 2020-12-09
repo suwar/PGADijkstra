@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Pagar Alam Tourism Maps</string>
-    <string name="title_activity_maps">Pencarian Rute</string>
     <string name="google_maps_API_key">AIzaSyCPdBK0lw_j67aTCUJAqV_dCglTf8Yv4Ec</string>
     <string name="todo">TODO</string>
 </resources>
