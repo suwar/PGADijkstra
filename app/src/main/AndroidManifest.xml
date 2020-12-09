@@ -47,9 +47,8 @@
             android:value="@string/google_maps_key" /> <!-- set google map -->
 
         <activity android:name="com.application.pgadijkstra.MenuActivity">
-
         </activity>
-        <activity android:name="com.application.pgadijkstra.MapsActivity" />
+        <activity android:name="com.application.pgadijkstra.MapsActivity"></activity>
     </application>
 
 </manifest>

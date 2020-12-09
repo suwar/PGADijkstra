@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,47 +9,67 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        tools:context="com.application.pgadijkstra.MapsActivity"/>
-
-    <Button
-        android:id="@+id/buttonMapView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Satellite View" />
-
-    <Button
-        android:id="@+id/buttonSatelliteView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Map View" />
-
-    <Button
-        android:id="@+id/buttonMain"
-        android:text="Peta Utama"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        tools:context="com.application.pgadijkstra.MapsActivity" />
 
     <TextView
-        android:id="@+id/tvWaktuPencarian"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/map_view"
+        android:layout_width="114dp"
+        android:layout_height="82dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/map_view"
+        android:gravity="center_horizontal"
+        android:text="Map"
+        android:textAlignment="center"
+        android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/tvJumlahNodeChecked"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/satellite_view"
+        android:layout_width="114dp"
+        android:layout_height="82dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="128dp"
+        android:background="@drawable/hybrid_view"
+        android:gravity="center_horizontal"
+        android:text="Satellite"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/tvJumlahIterasi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/cari_rute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="210dp"
+        android:src="@drawable/ic_cari_rute" />
+
+    <ImageView
+        android:id="@+id/ic_current_location"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="147dp"
+        android:src="@drawable/ic_current_location" />
 
     <ListView
         android:id="@+id/lvHasilPengujian"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="402dp"
+        android:layout_height="83dp"
+        android:layout_below="@+id/map"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="-115dp"
+        android:layout_marginRight="10dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="257dp" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -11,58 +12,65 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
 
-    <Button
-        android:id="@+id/btnNormalView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/map_view"
+        android:layout_width="114dp"
+        android:layout_height="82dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="250dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:text="S" />
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/map_view"
+        android:gravity="center_horizontal"
+        android:text="Map"
+        android:textAlignment="center"
+        android:textSize="25sp" />
 
-    <Button
-        android:id="@+id/btnSatelitView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/satellite_view"
+        android:layout_width="114dp"
+        android:layout_height="82dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="250dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:text="M" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/hybrid_view"
+        android:gravity="center_horizontal"
+        android:text="Satellite"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
 
-
-    <Button
-        android:id="@+id/pga"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <ImageView
+        android:id="@+id/peta_pga"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="272dp"
         android:scaleType="centerCrop"
+        android:src="@drawable/ic_peta_pga" />
 
-        android:text="H" />
-
-    <Button
-        android:id="@+id/btnProsesCariRute"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="150dp"
+    <ImageView
+        android:id="@+id/cari_rute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:text="C" />
-
-    <Button
-        android:id="@+id/btnLoc"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:text="L" />
+        android:layout_marginBottom="210dp"
+        android:src="@drawable/ic_cari_rute" />
+
+    <ImageView
+        android:id="@+id/ic_current_location"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="147dp"
+        android:src="@drawable/ic_current_location" />
 
 
 

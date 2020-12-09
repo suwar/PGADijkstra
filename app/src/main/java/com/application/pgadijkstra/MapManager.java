@@ -3,7 +3,9 @@ package com.application.pgadijkstra;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -267,7 +269,7 @@ public class MapManager {
                 Math.cos(lat1 * Math.PI / 180f) * Math.cos(lat2 * Math.PI / 180f) *
                         Math.sin(dLon / 2) * Math.sin(dLon / 2);
         double c = 2f * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double d = R * c;
+        double d = (R * c);
         return d;
     }
 }

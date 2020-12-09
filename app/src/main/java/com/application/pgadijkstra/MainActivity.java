@@ -12,7 +12,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -21,7 +22,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,59 +38,63 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private boolean mLocationPermissionsGranted = false;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
-    private static final int DEFAULT_ZOOM = 10;
+    private static final float DEFAULT_ZOOM = 10.8f;
     private static final float MY_LOCATION_ZOOM = 15f;
     private GoogleMap mMap;
+    private ImageView mCurrentLoc;
+    private ImageView mCariRute;
+    private ImageView mPetaPga;
+    private TextView mMapView;
+    private TextView mSatelliteView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button pga = (Button) findViewById(R.id.pga);
-        final Button normalView = (Button) findViewById(R.id.btnNormalView);
-        final Button satelitView = (Button) findViewById(R.id.btnSatelitView);
-        final Button prosesCariRute = (Button) findViewById(R.id.btnProsesCariRute);
-        final Button btnLoc = (Button) findViewById(R.id.btnLoc);
+        mCurrentLoc = (ImageView) findViewById(R.id.ic_current_location);
+        mPetaPga = (ImageView) findViewById(R.id.peta_pga);
+        mCariRute = (ImageView) findViewById(R.id.cari_rute);
+        mMapView = (TextView) findViewById(R.id.map_view);
+        mSatelliteView = (TextView) findViewById(R.id.satellite_view);
 
-        pga.setOnClickListener(new View.OnClickListener() {
+        mCurrentLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Clicked Current Location ");
+                getDeviceLocation();
+            }
+        });
+        mPetaPga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(PagarAlam, DEFAULT_ZOOM));
            }
         });
-
-        normalView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                normalView.setTag(R.id.btnNormalView);
-                satelitView.setVisibility(View.VISIBLE);
-                normalView.setVisibility(View.GONE);
-            }
-        });
-
-        satelitView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-                satelitView.setTag(R.id.btnSatelitView);
-                normalView.setVisibility(View.VISIBLE);
-                satelitView.setVisibility(View.GONE);
-            }
-        });
-        prosesCariRute.setOnClickListener(new View.OnClickListener() {
+        mCariRute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });
-        btnLoc.setOnClickListener(new View.OnClickListener() {
+        mMapView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "clicked L");
-                getDeviceLocation();
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                mMapView.setTag(R.id.map_view);
+                mSatelliteView.setVisibility(View.VISIBLE);
+                mMapView.setVisibility(View.GONE);
+            }
+        });
+        mSatelliteView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                mSatelliteView.setTag(R.id.satellite_view);
+                mMapView.setVisibility(View.VISIBLE);
+                mSatelliteView.setVisibility(View.GONE);
             }
         });
 
@@ -108,7 +112,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                 mLocationPermissionsGranted = true;
                 initMap();
-
             }else{
                 ActivityCompat.requestPermissions(this,
                         permissions,

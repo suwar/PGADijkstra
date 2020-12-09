@@ -12,12 +12,12 @@ import android.widget.TextView;
 import java.util.List;
 
 public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
-    private int[] color;
+    private int color;
     private int idNodeTujuan;
     private int idNodeAwal;
     private Context context;
 
-    public ListHasilPengujianAdapter(Context context, List<HasilPengujian> data, int resLayout, int[] color, int idNodeTujuan, int idNodeAwal){
+    public ListHasilPengujianAdapter(Context context, List<HasilPengujian> data, int resLayout, int color, int idNodeTujuan, int idNodeAwal){
         super(context,resLayout,data);
         this.context = context;
         this.color = color;
@@ -33,11 +33,10 @@ public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
         }
         HasilPengujian hasilPengujian = getItem(position);
 
-        convertView.setBackgroundColor(color[position]);
+        convertView.setBackgroundColor(color);
         ((TextView)convertView.findViewById(R.id.tvNamaAsal)).setText(MapManager.getNamaLokasiAwal(idNodeAwal));
         ((TextView)convertView.findViewById(R.id.tvNamaTujuan)).setText(MapManager.getNamaLokasiTujuan(idNodeTujuan));
         ((TextView)convertView.findViewById(R.id.tvJarakRute)).setText(String.valueOf(hasilPengujian.getJarakRute()));
-        ((TextView)convertView.findViewById(R.id.tvWaktuTempuh)).setText(String.valueOf(hasilPengujian.getCost()));
 
         return convertView;
     }
