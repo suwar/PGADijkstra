@@ -273,6 +273,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(TebatReban).title("Tebat Reban"));
         mMap.addMarker(new MarkerOptions().position(TuguRimau).title("Tugu Rimau"));
 
+
         mMap.addMarker(new MarkerOptions().position(HotelDharmaKarya).title("Hotel Dharma Karya").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
         mMap.addMarker(new MarkerOptions().position(HotelFavour).title("Hotel Favour").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
         mMap.addMarker(new MarkerOptions().position(HotelGrandZZ).title("Hotel Grand ZZ").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));

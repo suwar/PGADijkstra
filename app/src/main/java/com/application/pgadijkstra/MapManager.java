@@ -213,7 +213,7 @@ public class MapManager {
                         Node nodeAwal = nodeMap.get(idNodeAwal);
                         Node nodeTujuan = nodeMap.get(idNodeTujuan);
 
-                        double jarak = distance_in_meter(nodeAwal,nodeTujuan); // untuk menghitung jarak antar node
+                        double jarak = distance_in_kilometer(nodeAwal,nodeTujuan); // untuk menghitung jarak antar node
 
                         //---Graph Tanpa Konstanta---
                         double waktu = jarak / KECEPATAN_MAKSIMUM_0;
@@ -255,7 +255,8 @@ public class MapManager {
         }
     }
 
-    public static double distance_in_meter(Node awal, Node tujuan) {
+    public static double distance_in_kilometer(Node awal, Node tujuan) {
+
         double lat1 = awal.getPosisi().latitude;
         double lon1 = awal.getPosisi().longitude;
 
@@ -265,11 +266,11 @@ public class MapManager {
         double R = 6371f; // Radius of the earth in km
         double dLat = (lat1 - lat2) * Math.PI / 180f;
         double dLon = (lon1 - lon2) * Math.PI / 180f;
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        double a = Math.sin(dLat / 2f) * Math.sin(dLat / 2f) +
                 Math.cos(lat1 * Math.PI / 180f) * Math.cos(lat2 * Math.PI / 180f) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        double c = 2f * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double d = (R * c);
+                        Math.sin(dLon / 2f) * Math.sin(dLon / 2f);
+        double c = 2f * Math.atan2(Math.sqrt(a), Math.sqrt(1f - a));
+        double d = R * c;
         return d;
     }
 }

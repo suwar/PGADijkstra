@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#4286f4"
     android:padding="10dp">
@@ -12,27 +12,41 @@
         android:orientation="horizontal">
 
         <TextView
+            android:text="Lokasi Awal: "
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textColor="#FFFF" />
+        <TextView
             android:id="@+id/tvNamaAsal"
-            android:layout_width="141dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:textColor="#FFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"   >
 
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="----->"
-            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="Lokasi Tujuan: "
+            android:textSize="15sp"
             android:textColor="#FFFF" />
-
-        <TextView
+    <TextView
             android:id="@+id/tvNamaTujuan"
-            android:layout_width="130dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:textColor="#FFFF" />
     </LinearLayout>
 
@@ -42,19 +56,28 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="126dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="right"
-            android:text="Jarak (km):"
+
+
+            android:gravity="left"
+            android:text="Jarak: "
+            android:textSize="15sp"
             android:textColor="#FFFF" />
 
         <TextView
             android:id="@+id/tvJarakRute"
-            android:layout_width="257dp"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="left"
+            android:layout_gravity="left"
+            android:textColor="#FFFF" />
+        <TextView
+            android:text=" km"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:textColor="#FFFF" />
     </LinearLayout>
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import java.text.DecimalFormat;
 
 import java.util.List;
 
@@ -32,11 +33,13 @@ public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_hasil_pengujian,parent,false);
         }
         HasilPengujian hasilPengujian = getItem(position);
+        DecimalFormat df = new DecimalFormat("#.##");
+        String s = df.format(hasilPengujian.getJarakRute());
 
         convertView.setBackgroundColor(color);
         ((TextView)convertView.findViewById(R.id.tvNamaAsal)).setText(MapManager.getNamaLokasiAwal(idNodeAwal));
         ((TextView)convertView.findViewById(R.id.tvNamaTujuan)).setText(MapManager.getNamaLokasiTujuan(idNodeTujuan));
-        ((TextView)convertView.findViewById(R.id.tvJarakRute)).setText(String.valueOf(hasilPengujian.getJarakRute()));
+        ((TextView)convertView.findViewById(R.id.tvJarakRute)).setText(String.valueOf(s));
 
         return convertView;
     }

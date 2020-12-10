@@ -1,6 +1,9 @@
 package com.application.pgadijkstra;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
+import java.util.Locale;
 
 public class DjikstraAlgorithm {
     private static double jarakRute;
@@ -120,7 +123,7 @@ public class DjikstraAlgorithm {
             v = parents[v];
             Node tujuan = MapManager.nodeMap.get(v);
 
-            jarakRute += MapManager.distance_in_meter(asal,tujuan);
+            jarakRute += MapManager.distance_in_kilometer(asal,tujuan);
 
             path.add(tujuan);
         }

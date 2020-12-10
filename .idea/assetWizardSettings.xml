@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Suwarto\AppData\Local\Temp\baseline_flight_24.xml" />
+                                                <entry key="imagePath" value="C:\Users\Suwarto\AppData\Local\Temp\baseline_trip_origin_24.xml" />
                                                 <entry key="opacityPercent" value="80" />
                                                 <entry key="paddingPercent" value="-5" />
                                               </map>
@@ -37,7 +37,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/flight/baseline_flight_24.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/trip_origin/baseline_trip_origin_24.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -49,6 +49,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\Suwarto\Downloads\map-icons-master\map-icons-master\src\icons\atm.svg" />
                                                 <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
@@ -61,6 +62,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -72,6 +74,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="opacityPercent" value="80" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -81,9 +84,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_bandara" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\Suwarto\Downloads\map-icons-master\map-icons-master\src\icons\atm.svg" />
+                                      <entry key="outputName" value="atm" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="000000" />
+                                      <entry key="themeColor" value="4950e9" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -336,7 +341,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/flight/baseline_flight_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/trip_origin/baseline_trip_origin_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -346,7 +351,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_baseline_flight_24" />
+                            <entry key="color" value="8396e9" />
+                            <entry key="outputName" value="ic_baseline_trip_origin_24" />
                             <entry key="sourceFile" value="C:\Users\Suwarto\AndroidStudioProjects\PGADijkstra" />
                           </map>
                         </option>

@@ -232,7 +232,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         namaLokasiTujuan = MapManager.nodeMap.get(idNodeTujuan).getNama();
 
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiAwal,14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiTujuan,14));
         mMap.addMarker(new MarkerOptions().position(lokasiAwal).title(namaLokasiAwal).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         mMap.addMarker(new MarkerOptions().position(lokasiTujuan).title(namaLokasiTujuan).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
