@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MapManager {
-    private static final double KECEPATAN_MAKSIMUM_0 = 11.111;  // 40 meter / second
-    private static final double KECEPATAN_MAKSIMUM_1 = 8.333;  //30 meter / second
-    private static final double KECEPATAN_MAKSIMUM_2 = 2.777;  // 10 meter / second
     private static ArrayList<Node> listLokasiAwal;
     private static ArrayList<Node> listLokasiTujuan;
     public static HashMap<Integer,Node> nodeMap;
@@ -214,34 +211,6 @@ public class MapManager {
                         Node nodeTujuan = nodeMap.get(idNodeTujuan);
 
                         double jarak = distance_in_kilometer(nodeAwal,nodeTujuan); // untuk menghitung jarak antar node
-
-                        //---Graph Tanpa Konstanta---
-                        double waktu = jarak / KECEPATAN_MAKSIMUM_0;
-                        graph[idNodeAwal][idNodeTujuan] = waktu;
-
-                        if(status == 0){
-                            graph[idNodeTujuan][idNodeAwal] = waktu;
-                        }
-
-
-                        //---Graph Menggunakan Konstanta---
-                        double kecepatan;
-                        if(konstanta >= 0 && konstanta <=3)
-                            kecepatan = KECEPATAN_MAKSIMUM_0;
-                        else if(konstanta >= 4 && konstanta <=6)
-                            kecepatan = KECEPATAN_MAKSIMUM_1;
-                        else
-                            kecepatan = KECEPATAN_MAKSIMUM_2;
-
-                        double waktuK = jarak/kecepatan;
-
-                        graphK[idNodeAwal][idNodeTujuan] = waktuK;
-                        //---- untuk membuat jalan one way
-                        if(status == 0){ // jika status 0 -> 2 arah / 1 -> 1 arah
-                            graphK[idNodeTujuan][idNodeAwal] = waktuK;
-                        }
-
-
 
                     }while(cursor.moveToNext());
                 }

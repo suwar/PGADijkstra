@@ -1,10 +1,8 @@
 package com.application.pgadijkstra;
 
 import java.util.ArrayList;
-import java.text.*;
 
 public class HasilPengujian {
-    private double cost;
     private ArrayList<Node> jalur;
     private double jarakRute;
 
@@ -18,14 +16,6 @@ public class HasilPengujian {
         this.jarakRute = jarakRute;
     }
 
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
     public ArrayList<Node> getJalur() {
         return jalur;
     }
@@ -33,5 +23,4 @@ public class HasilPengujian {
     public void setJalur(ArrayList<Node> jalur) {
         this.jalur = jalur;
     }
-
 }

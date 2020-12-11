@@ -1,14 +1,9 @@
 package com.application.pgadijkstra;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.text.DecimalFormat;
-import java.util.Locale;
 
-public class DjikstraAlgorithm {
+public class DijkstraAlgorithm {
     private static double jarakRute;
-    private static int jumlahIterasi;
-    private static int jumlahNodeChecked;
 
     private static double[] InitializeCost(int graphLength) {
         double[] cost = new double[graphLength];
@@ -40,8 +35,6 @@ public class DjikstraAlgorithm {
     private static int[] Search(double[][] graph, double[] cost, int[] parents, boolean[] isVisited, int idNodeTujuan) {
         //---Searching Path---
         for (int i = 0; i < graph.length; i++) {
-            jumlahNodeChecked++;
-            jumlahIterasi++;
 
             int idNodeTerdekat = -1;
             double costTerkecil = Double.POSITIVE_INFINITY;
@@ -65,7 +58,6 @@ public class DjikstraAlgorithm {
                    //untuk mengetahui bisa tidak ketujuan selanjutnya      //cost terkecil + selanjutnya untuk update
                     parents[j] = idNodeTerdekat;
                     cost[j] = costTerkecil + graph[idNodeTerdekat][j]; // untuk update cost
-
                 }
             }
         }
@@ -73,10 +65,7 @@ public class DjikstraAlgorithm {
         return parents;
     }
 
-    public static HasilKesuluruhanPengujian searchPath(double[][] graph, int idNodeAwal, int idNodeTujuan){
-        long startTime = System.currentTimeMillis(); //atribut menghitung waktu jalan algoritma fungsi dari android
-        jumlahIterasi = 0;
-        jumlahNodeChecked = 0;
+    public static HasilKeseluruhanPengujian searchPath(double[][] graph, int idNodeAwal, int idNodeTujuan){
         jarakRute = 0;
         double[] cost; //Untuk mencatat cost
         boolean[] isVisited; //untuk mencatat node yang sudah dikunjungi
@@ -99,17 +88,14 @@ public class DjikstraAlgorithm {
             //---Hasil Pengujian---
             HasilPengujian hasilPengujian = new HasilPengujian();
             hasilPengujian.setJalur(jalur); // untuk bikin jalur
-            hasilPengujian.setCost(cost[idNodeTujuan]); // untuk waktu tempuh
+
             hasilPengujian.setJarakRute(jarakRute); // jarak tempuh
 
             listHasilPengujian.add(hasilPengujian);
 
-        long endTime = System.currentTimeMillis();
-        long waktuPencarian = endTime - startTime;
+        HasilKeseluruhanPengujian hasilKeseluruhanPengujian = new HasilKeseluruhanPengujian(listHasilPengujian);
 
-        HasilKesuluruhanPengujian hasilKesuluruhanPengujian = new HasilKesuluruhanPengujian(listHasilPengujian,waktuPencarian,jumlahIterasi,jumlahNodeChecked);
-
-        return hasilKesuluruhanPengujian;
+        return hasilKeseluruhanPengujian;
     }
 
     private static ArrayList<Node> buatJalur(int[] parents, int u, int v) {

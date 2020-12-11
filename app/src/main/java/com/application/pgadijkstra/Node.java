@@ -23,9 +23,6 @@ public class Node {
         this.id = id;
     }
 
-    public void setNama(String nama){
-        this.nama = nama;
-    }
     public String getNama(){
         return nama;
     }
@@ -33,6 +30,7 @@ public class Node {
     public void setPosisi(LatLng posisi){
         this.posisi = posisi;
     }
+
     public LatLng getPosisi(){
         return posisi;
     }

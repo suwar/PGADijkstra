@@ -237,16 +237,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(lokasiTujuan).title(namaLokasiTujuan).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         //---Pengujian Dengan Graph Biasa---
-        HasilKesuluruhanPengujian kesuluruhanPengujian;
+        HasilKeseluruhanPengujian keseluruhanPengujian;
 
-        kesuluruhanPengujian = DjikstraAlgorithm.searchPath(MapManager.graphK,idNodeAwal,idNodeTujuan);
+        keseluruhanPengujian = DijkstraAlgorithm.searchPath(MapManager.graphK,idNodeAwal,idNodeTujuan);
 
-        for(int i=0; i<kesuluruhanPengujian.getListHasilPengujian().size(); i++){
-            HasilPengujian hasilPengujian = kesuluruhanPengujian.getListHasilPengujian().get(i);
+        for(int i=0; i<keseluruhanPengujian.getListHasilPengujian().size(); i++){
+            HasilPengujian hasilPengujian = keseluruhanPengujian.getListHasilPengujian().get(i);
             PolylineManager.drawPolyline(mMap,hasilPengujian.getJalur(),COLOR_LINE,WIDTH_LINE);
         }
 
-        ListHasilPengujianAdapter adapter = new ListHasilPengujianAdapter(this,kesuluruhanPengujian.getListHasilPengujian(),R.layout.item_hasil_pengujian,COLOR_LINE, idNodeTujuan, idNodeAwal);
+        ListHasilPengujianAdapter adapter = new ListHasilPengujianAdapter(this,keseluruhanPengujian.getListHasilPengujian(),R.layout.item_hasil_pengujian,COLOR_LINE, idNodeTujuan, idNodeAwal);
         lvHasilPengujian.setAdapter(adapter);
         }
 }

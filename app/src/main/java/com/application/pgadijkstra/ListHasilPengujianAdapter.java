@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import java.text.DecimalFormat;
-
 import java.util.List;
 
 public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
@@ -33,6 +32,7 @@ public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_hasil_pengujian,parent,false);
         }
         HasilPengujian hasilPengujian = getItem(position);
+
         DecimalFormat df = new DecimalFormat("#.##");
         String s = df.format(hasilPengujian.getJarakRute());
 
