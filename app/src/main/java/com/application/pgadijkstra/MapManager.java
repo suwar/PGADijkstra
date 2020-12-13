@@ -10,12 +10,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
 public class MapManager {
+    private static final double KECEPATAN_MAKSIMUM_0 = 11.111;  // 40 meter / second
+    private static final double KECEPATAN_MAKSIMUM_1 = 8.333;  //30 meter / second
+    private static final double KECEPATAN_MAKSIMUM_2 = 2.777;  // 10 meter / second
+
     private static ArrayList<Node> listLokasiAwal;
     private static ArrayList<Node> listLokasiTujuan;
+
     public static HashMap<Integer,Node> nodeMap;
     public static double[][] graph;
     public static double[][] graphK;
+
 
     private static void initLokasiAwal(){
         listLokasiAwal = new ArrayList<>();
@@ -121,6 +129,34 @@ public class MapManager {
         return listLokasiTujuan;
     }
 
+    public static int getIdLokasi(String nama){
+        if(listLokasiTujuan == null) {
+            initLokasiTujuan();
+        }
+
+        for(int i=0; i<listLokasiTujuan.size(); i++){
+            Node nodeTujuan = listLokasiTujuan.get(i);
+            if(nodeTujuan.getNama().equalsIgnoreCase(nama))
+                return nodeTujuan.getId();
+        }
+
+        return -1;
+    }
+
+    public static String getNamaLokasiTujuan(int id){
+        if(listLokasiTujuan == null) {
+            initLokasiTujuan();
+        }
+
+        for(int i=0; i<listLokasiTujuan.size(); i++){
+            Node nodeTujuan = listLokasiTujuan.get(i);
+            if(nodeTujuan.getId() == id)
+                return nodeTujuan.getNama();
+        }
+
+        return "";
+    }
+
     public static String getNamaLokasiAwal(int id){
         if(listLokasiAwal == null) {
             initLokasiTujuan();
@@ -135,19 +171,6 @@ public class MapManager {
         return "";
     }
 
-    public static String getNamaLokasiTujuan(int id){
-        if(listLokasiTujuan == null) {
-            initLokasiTujuan();
-        }
-
-        for(int i=0; i<listLokasiTujuan.size(); i++){
-            Node nodeTujuan = listLokasiTujuan.get(i);
-            if(nodeTujuan.getId() == id)
-                return nodeTujuan.getNama();
-        }
-        return "";
-    }
-
     public static void init(Context context){
         settingNodeMap(context); // untuk seting node
         settingGraph(context);// untuk seting graph
@@ -155,50 +178,50 @@ public class MapManager {
 
     private static void settingNodeMap(Context context){ //untuk setting node map dari database untuk listing node map
         nodeMap = new HashMap<>(); //buat variabel map baru
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        DbHelper dbHelper = new DbHelper(context);
 
-        try {
-            databaseHelper.createDataBase();
-            databaseHelper.openDataBase();
-            Cursor cursor = databaseHelper.getAllNode();
-
-            if (cursor.getCount()!=0) { //
+        try{
+            dbHelper.createDataBase();
+            dbHelper.openDataBase();
+            Cursor cursor = dbHelper.getAllNode();
+            if(cursor.getCount()!=0){ //
                 Log.v("NodeMap","Cursor "+cursor.getCount());
                 graph = new double[cursor.getCount()+1][cursor.getCount()+1];
                 graphK = new double[cursor.getCount()+1][cursor.getCount()+1];
-
-                if (cursor.moveToFirst()) {
-                    do {
+                if(cursor.moveToFirst()){
+                    do{
                         int id = cursor.getInt(0); //i = kolom
                         double lat = cursor.getDouble(1);
                         double lng = cursor.getDouble(2);
                         String name = cursor.getString(3);
+
                         Node nodeBaru = new Node(id,name, new LatLng(lat,lng));
                         nodeMap.put(id, nodeBaru);
-                    } while(cursor.moveToNext());
+
+                    }while(cursor.moveToNext());
                 }
-            } else {
+            }else{
                 Log.v("NodeMap","Cursor 0");
             }
-            databaseHelper.close();
+            dbHelper.close();
 
-        } catch(IOException e) {
+        }catch(IOException e){
             e.printStackTrace();
         }
     }
 
-    private static void settingGraph(Context context) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+    private static void settingGraph(Context context){
+        DbHelper dbHelper = new DbHelper(context);
 
-        try {
-            databaseHelper.createDataBase();
-            databaseHelper.openDataBase();
-            Cursor cursor = databaseHelper.getAllEdge();
-            if (cursor.getCount()!=0) {
+        try{
+            dbHelper.createDataBase();
+            dbHelper.openDataBase();
+            Cursor cursor = dbHelper.getAllEdge();
+            if(cursor.getCount()!=0){
                 Log.v("Graph","Cursor "+cursor.getCount());
 
-                if (cursor.moveToFirst()) {
-                    do {
+                if(cursor.moveToFirst()){
+                    do{
                         int id = cursor.getInt(0);
                         int idNodeAwal = cursor.getInt(1);
                         int idNodeTujuan = cursor.getInt(2);
@@ -212,12 +235,40 @@ public class MapManager {
 
                         double jarak = distance_in_kilometer(nodeAwal,nodeTujuan); // untuk menghitung jarak antar node
 
+                        //---Graph Tanpa Konstanta---
+                        double waktu = jarak / KECEPATAN_MAKSIMUM_0;
+                        graph[idNodeAwal][idNodeTujuan] = waktu;
+
+                        if(status == 0){
+                            graph[idNodeTujuan][idNodeAwal] = waktu;
+                        }
+
+
+                        //---Graph Menggunakan Konstanta---
+                        double kecepatan;
+                        if(konstanta >= 0 && konstanta <=3)
+                            kecepatan = KECEPATAN_MAKSIMUM_0;
+                        else if(konstanta >= 4 && konstanta <=6)
+                            kecepatan = KECEPATAN_MAKSIMUM_1;
+                        else
+                            kecepatan = KECEPATAN_MAKSIMUM_2;
+
+                        double waktuK = jarak/kecepatan;
+
+                        graphK[idNodeAwal][idNodeTujuan] = waktuK;
+                        //---- untuk membuat jalan one way
+                        if(status == 0){ // jika status 0 -> 2 arah / 1 -> 1 arah
+                            graphK[idNodeTujuan][idNodeAwal] = waktuK;
+                        }
+
+
+
                     }while(cursor.moveToNext());
                 }
             }else{
                 Log.v("Graph","Cursor 0");
             }
-            databaseHelper.close();
+            dbHelper.close();
 
         }catch(IOException e){
             e.printStackTrace();
@@ -225,7 +276,6 @@ public class MapManager {
     }
 
     public static double distance_in_kilometer(Node awal, Node tujuan) {
-
         double lat1 = awal.getPosisi().latitude;
         double lon1 = awal.getPosisi().longitude;
 
@@ -235,10 +285,10 @@ public class MapManager {
         double R = 6371f; // Radius of the earth in km
         double dLat = (lat1 - lat2) * Math.PI / 180f;
         double dLon = (lon1 - lon2) * Math.PI / 180f;
-        double a = Math.sin(dLat / 2f) * Math.sin(dLat / 2f) +
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
                 Math.cos(lat1 * Math.PI / 180f) * Math.cos(lat2 * Math.PI / 180f) *
-                        Math.sin(dLon / 2f) * Math.sin(dLon / 2f);
-        double c = 2f * Math.atan2(Math.sqrt(a), Math.sqrt(1f - a));
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double c = 2f * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double d = R * c;
         return d;
     }

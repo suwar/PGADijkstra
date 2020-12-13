@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DbHelper extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
     private static String DB_PATH = "/data/data/com.application.pgadijkstra/databases/";
     private static String DB_NAME = "database.db";
     private SQLiteDatabase myDataBase;
     private final Context myContext;
 
-    public DatabaseHelper(Context context) {
+    public DbHelper(Context context) {
 
         super(context, DB_NAME, null, 1);
         this.myContext = context;

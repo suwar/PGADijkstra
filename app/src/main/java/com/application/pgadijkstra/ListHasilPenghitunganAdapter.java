@@ -11,13 +11,13 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
+public class ListHasilPenghitunganAdapter extends ArrayAdapter<HasilPenghitungan> {
     private int color;
     private int idNodeTujuan;
     private int idNodeAwal;
     private Context context;
 
-    public ListHasilPengujianAdapter(Context context, List<HasilPengujian> data, int resLayout, int color, int idNodeTujuan, int idNodeAwal){
+    public ListHasilPenghitunganAdapter(Context context, List<HasilPenghitungan> data, int resLayout, int color, int idNodeTujuan, int idNodeAwal){
         super(context,resLayout,data);
         this.context = context;
         this.color = color;
@@ -31,10 +31,10 @@ public class ListHasilPengujianAdapter extends ArrayAdapter<HasilPengujian> {
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_hasil_pengujian,parent,false);
         }
-        HasilPengujian hasilPengujian = getItem(position);
+        HasilPenghitungan hasilPenghitungan = getItem(position);
 
         DecimalFormat df = new DecimalFormat("#.##");
-        String s = df.format(hasilPengujian.getJarakRute());
+        String s = df.format(hasilPenghitungan.getJarakRute());
 
         convertView.setBackgroundColor(color);
         ((TextView)convertView.findViewById(R.id.tvNamaAsal)).setText(MapManager.getNamaLokasiAwal(idNodeAwal));

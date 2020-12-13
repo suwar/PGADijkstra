@@ -2,11 +2,11 @@ package com.application.pgadijkstra;
 
 import java.util.ArrayList;
 
-public class HasilPengujian {
+public class HasilPenghitungan {
     private ArrayList<Node> jalur;
     private double jarakRute;
 
-    public HasilPengujian(){}
+    public HasilPenghitungan(){}
 
     public double getJarakRute(){
         return jarakRute;

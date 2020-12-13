@@ -237,16 +237,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(lokasiTujuan).title(namaLokasiTujuan).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         //---Pengujian Dengan Graph Biasa---
-        HasilKeseluruhanPengujian keseluruhanPengujian;
+        HasilKeseluruhanPenghitungan keseluruhanPengujian;
 
-        keseluruhanPengujian = DijkstraAlgorithm.searchPath(MapManager.graphK,idNodeAwal,idNodeTujuan);
+        keseluruhanPengujian = AlgoritmaDijkstra.searchPath(MapManager.graphK,idNodeAwal,idNodeTujuan);
 
-        for(int i=0; i<keseluruhanPengujian.getListHasilPengujian().size(); i++){
-            HasilPengujian hasilPengujian = keseluruhanPengujian.getListHasilPengujian().get(i);
-            PolylineManager.drawPolyline(mMap,hasilPengujian.getJalur(),COLOR_LINE,WIDTH_LINE);
+        for(int i = 0; i<keseluruhanPengujian.getListHasilPenghitungan().size(); i++){
+            HasilPenghitungan hasilPenghitungan = keseluruhanPengujian.getListHasilPenghitungan().get(i);
+            PolylineManager.drawPolyline(mMap, hasilPenghitungan.getJalur(),COLOR_LINE,WIDTH_LINE);
         }
 
-        ListHasilPengujianAdapter adapter = new ListHasilPengujianAdapter(this,keseluruhanPengujian.getListHasilPengujian(),R.layout.item_hasil_pengujian,COLOR_LINE, idNodeTujuan, idNodeAwal);
+        ListHasilPenghitunganAdapter adapter = new ListHasilPenghitunganAdapter(this,keseluruhanPengujian.getListHasilPenghitungan(),R.layout.item_hasil_pengujian,COLOR_LINE, idNodeTujuan, idNodeAwal);
         lvHasilPengujian.setAdapter(adapter);
         }
 }

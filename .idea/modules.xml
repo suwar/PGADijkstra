@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-PGADijkstra.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects-PGADijkstra.iml" group="PGADijkstra" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PGADijkstra.iml" filepath="$PROJECT_DIR$/.idea/modules/PGADijkstra.iml" group="PGADijkstra" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PGADijkstra-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PGADijkstra-app.iml" group="PGADijkstra/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="PGADijkstra/app" />
     </modules>
   </component>
