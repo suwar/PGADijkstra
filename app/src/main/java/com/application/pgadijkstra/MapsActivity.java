@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final LatLng PagarAlam = new LatLng( -4.066010, 103.268494);
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
-    private String TAG = "MainActivity";
+    private String TAG = "MapsActivity";
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private boolean mLocationPermissionsGranted = false;
@@ -55,6 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private ImageView mCurrentLoc;
     private ImageView mCariRute;
+    private ImageView mPetaPga2;
     private TextView mMapView;
     private TextView mSatelliteView;
 
@@ -65,6 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mCurrentLoc = (ImageView) findViewById(R.id.ic_current_location);
         mCariRute = (ImageView) findViewById(R.id.cari_rute);
+        mPetaPga2 = (ImageView) findViewById(R.id.peta_pga2);
         mMapView = (TextView) findViewById(R.id.map_view);
         mSatelliteView = (TextView) findViewById(R.id.satellite_view);
 
@@ -75,7 +77,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getDeviceLocation();
             }
         });
-
+        mPetaPga2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, MainActivity.class);
+                startActivity(intent);
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(PagarAlam, DEFAULT_ZOOM));
+            }
+        });
         mCariRute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
