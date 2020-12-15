@@ -47,7 +47,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView mMapView;
     private TextView mSatelliteView;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -229,7 +228,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng Tangga2001 = new LatLng( -4.037824,103.190280);
         LatLng TebatReban = new LatLng( -4.016713,103.263158);
         LatLng TuguRimau = new LatLng( -4.024452,103.154490);
-
         LatLng HotelDharmaKarya =  new LatLng( -4.003182, 103.241757);
         LatLng HotelFavour = new LatLng( -4.036518, 103.255588);
         LatLng HotelGrandZZ = new LatLng( -4.012484, 103.249421);
@@ -242,7 +240,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng VillaexMTQPagarAlam = new LatLng( -4.038575,103.193711);
         LatLng VillaGunungGare = new LatLng( -4.037847,103.192724);
         LatLng WismaBara = new LatLng( -4.038814,103.219562);
-
         LatLng BandarUdaraAtungBungsu = new LatLng( -4.025745,103.380013);
         LatLng CVDharmaKaryaTravel = new LatLng( -4.022023,103.253632);
         LatLng CVDimasTravel = new LatLng( -4.028729,103.258782);
@@ -252,7 +249,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng POTelagaBiruBusTravel = new LatLng( -4.019416,103.251782);
         LatLng POTelagaIndahArmadaBus = new LatLng( -4.020615,103.248625);
         LatLng TerminalBusNendagung = new LatLng( -4.026174,103.238405);
-
 
         mMap.addMarker(new MarkerOptions().position(AirTerjunLematang).title("Air Terjun Lematang"));
         mMap.addMarker(new MarkerOptions().position(Curup7Kenangan).title("Curup Tujuh Kenangan"));
@@ -272,8 +268,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(Tangga2001).title("Tangga 2001"));
         mMap.addMarker(new MarkerOptions().position(TebatReban).title("Tebat Reban"));
         mMap.addMarker(new MarkerOptions().position(TuguRimau).title("Tugu Rimau"));
-
-
         mMap.addMarker(new MarkerOptions().position(HotelDharmaKarya).title("Hotel Dharma Karya").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
         mMap.addMarker(new MarkerOptions().position(HotelFavour).title("Hotel Favour").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
         mMap.addMarker(new MarkerOptions().position(HotelGrandZZ).title("Hotel Grand ZZ").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
@@ -286,7 +280,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(VillaexMTQPagarAlam).title("VillaexMTQPagarAlam").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
         mMap.addMarker(new MarkerOptions().position(VillaGunungGare).title("Villa Gunung Gare").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
         mMap.addMarker(new MarkerOptions().position(WismaBara).title("Wisma Bara").icon(BitmapDescriptorFactory.fromResource(R.drawable.lodging)));
-
         mMap.addMarker(new MarkerOptions().position(BandarUdaraAtungBungsu).title("Bandar Udara Atung Bungsu").icon(BitmapDescriptorFactory.fromResource(R.drawable.airports)));
         mMap.addMarker(new MarkerOptions().position(CVDharmaKaryaTravel).title("CV Dharma Karya Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.cabs)));
         mMap.addMarker(new MarkerOptions().position(CVDimasTravel).title("CV Dimas Travel").icon(BitmapDescriptorFactory.fromResource(R.drawable.cabs)));

@@ -1,10 +1,9 @@
 package com.application.pgadijkstra;
 
-
 import java.util.ArrayList;
 
 public class AlgoritmaDijkstra {
-    private static double jarakRute;
+    private static double jarak;
 
     private static double[] InitializeCost(int graphLength) {
         double[] cost = new double[graphLength];
@@ -40,7 +39,7 @@ public class AlgoritmaDijkstra {
             int idNodeTerdekat = -1;
             double costTerkecil = Double.POSITIVE_INFINITY;
 
-            //---Mencari Node Dengan Cost Terkecil---   //untuk uodate posisi skrng
+            //---Mencari node dengan cost terkecil---   //untuk update posisi sekarang
             for (int j = 0; j < graph.length; j++) {
                 if (!isVisited[j] && cost[j] < costTerkecil) { //
                     idNodeTerdekat = j;
@@ -55,10 +54,10 @@ public class AlgoritmaDijkstra {
 
             //---Update Cost---
             for (int j = 0; j < graph.length; j++) {
-                if (graph[idNodeTerdekat][j] > 0 && ((costTerkecil + graph[idNodeTerdekat][j]) < cost[j])) {  //if graft terdekat > 0 dan kost terkecil (bisa keselanjutnya) + node selanjutnya
-                    //untuk mengetahui bisa tidak ketujuan selanjutnya      //cost terkecil + selanjutnya untuk update
-                    parents[j] = idNodeTerdekat;                                                                //untuk update cost
-                    cost[j] = costTerkecil + graph[idNodeTerdekat][j];
+                if (graph[idNodeTerdekat][j] > 0 && ((costTerkecil + graph[idNodeTerdekat][j]) < cost[j])) {  //if graph terdekat > 0 dan cost terkecil (bisa keselanjutnya) + node selanjutnya
+                    //untuk mengetahui bisa tidak ketujuan selanjutnya
+                    parents[j] = idNodeTerdekat; //untuk update cost
+                    cost[j] = costTerkecil + graph[idNodeTerdekat][j]; //cost terkecil + selanjutnya untuk update
 
                 }
             }
@@ -68,11 +67,10 @@ public class AlgoritmaDijkstra {
     }
 
     public static HasilKeseluruhanPenghitungan searchPath(double[][] graph, int idNodeAwal, int idNodeTujuan){
-        jarakRute = 0;
+        jarak = 0;
         double[] cost; //Untuk mencatat cost
         boolean[] isVisited; //untuk mencatat node yang sudah dikunjungi
         int[] parents; // untuk mencatat orang tua dari node ke-i
-
 
         ArrayList<HasilPenghitungan> listHasilPenghitungan = new ArrayList<>();
 
@@ -88,10 +86,10 @@ public class AlgoritmaDijkstra {
             //---Buat Jalur---
             ArrayList<Node> jalur = buatJalur(parents, idNodeAwal, idNodeTujuan);
 
-            //---Hasil Pengujian---
+            //---Hasil Penghitungan---
             HasilPenghitungan hasilPenghitungan = new HasilPenghitungan();
-            hasilPenghitungan.setJalur(jalur); // untuk beken jalur
-            hasilPenghitungan.setJarakRute(jarakRute); // jarak tempuh
+            hasilPenghitungan.setJalur(jalur); // untuk membuat jalur
+            hasilPenghitungan.setJarakRute(jarak); // jarak tempuh
 
            listHasilPenghitungan.add(hasilPenghitungan);
 
@@ -101,17 +99,16 @@ public class AlgoritmaDijkstra {
     }
 
     private static ArrayList<Node> buatJalur(int[] parents, int u, int v) {
-        jarakRute=0;
+        jarak=0;
         ArrayList<Node> path = new ArrayList<>();
         path.add(MapManager.nodeMap.get(v));
 
-        while(u != v){  // jika node awal bukan tujuan
-            Node asal = MapManager.nodeMap.get(v); // node asal nyo v , buat jalurnya dari tujuan ke asal
-
+        while(u != v){  // selama node awal bukan tujuan
+            Node asal = MapManager.nodeMap.get(v); // node asalnya v, buat jalurnya dari tujuan ke asal
             v = parents[v];
             Node tujuan = MapManager.nodeMap.get(v);
 
-            jarakRute += MapManager.distance_in_kilometer(asal,tujuan);
+            jarak += MapManager.distance_in_kilometer(asal,tujuan);
 
             path.add(tujuan);
         }

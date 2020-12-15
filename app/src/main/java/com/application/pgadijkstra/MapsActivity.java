@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,33 +30,30 @@ import com.google.android.gms.tasks.Task;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private static int COLOR_LINE = Color.BLUE;
-    private static int WIDTH_LINE = 20;
     private GoogleMap mMap;
     private LatLng lokasiAwal;
     private LatLng lokasiTujuan;
-    private int idNodeAwal;
-    private int idNodeTujuan;
     private String namaLokasiAwal;
     private String namaLokasiTujuan;
-    private ListView lvHasilPengujian;
-
-    private static final LatLng PagarAlam = new LatLng( -4.066010, 103.268494);
-    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private String TAG = "MapsActivity";
-
-    private FusedLocationProviderClient mFusedLocationProviderClient;
-    private boolean mLocationPermissionsGranted = false;
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
-    private static final int DEFAULT_ZOOM = 10;
-    private static final float MY_LOCATION_ZOOM = 15f;
-
+    private ListView lvHasilPengujian;
     private ImageView mCurrentLoc;
     private ImageView mCariRute;
     private ImageView mPetaPga2;
     private TextView mMapView;
     private TextView mSatelliteView;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private int idNodeAwal;
+    private int idNodeTujuan;
+    private boolean mLocationPermissionsGranted = false;
+    private static int COLOR_LINE = Color.BLUE;
+    private static int WIDTH_LINE = 20;
+    private static final LatLng PagarAlam = new LatLng( -4.066010, 103.268494);
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private static final int DEFAULT_ZOOM = 10;
+    private static final float MY_LOCATION_ZOOM = 15f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,7 +209,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .title(title);
             mMap.addMarker(options);
         }
-    }
+        }
 
     private void initMap(){
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -223,39 +219,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        if (mLocationPermissionsGranted) {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(PagarAlam, DEFAULT_ZOOM));
-            //getDeviceLocation();
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            mMap.setMyLocationEnabled(true);
-            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-        }
+        mMap = googleMap;
 
         lokasiAwal = MapManager.nodeMap.get(idNodeAwal).getPosisi();
         lokasiTujuan = MapManager.nodeMap.get(idNodeTujuan).getPosisi();
         namaLokasiAwal = MapManager.nodeMap.get(idNodeAwal).getNama();
         namaLokasiTujuan = MapManager.nodeMap.get(idNodeTujuan).getNama();
 
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasiTujuan,14));
         mMap.addMarker(new MarkerOptions().position(lokasiAwal).title(namaLokasiAwal).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         mMap.addMarker(new MarkerOptions().position(lokasiTujuan).title(namaLokasiTujuan).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         //---Pengujian Dengan Graph Biasa---
-        HasilKeseluruhanPenghitungan keseluruhanPengujian;
+        HasilKeseluruhanPenghitungan keseluruhanPenghitungan;
 
-        keseluruhanPengujian = AlgoritmaDijkstra.searchPath(MapManager.graphK,idNodeAwal,idNodeTujuan);
+        keseluruhanPenghitungan = AlgoritmaDijkstra.searchPath(MapManager.graph,idNodeAwal,idNodeTujuan);
 
-        for(int i = 0; i<keseluruhanPengujian.getListHasilPenghitungan().size(); i++){
-            HasilPenghitungan hasilPenghitungan = keseluruhanPengujian.getListHasilPenghitungan().get(i);
+        for(int i = 0; i<keseluruhanPenghitungan.getListHasilPenghitungan().size(); i++){
+            HasilPenghitungan hasilPenghitungan = keseluruhanPenghitungan.getListHasilPenghitungan().get(i);
             PolylineManager.drawPolyline(mMap, hasilPenghitungan.getJalur(),COLOR_LINE,WIDTH_LINE);
         }
 
-        ListHasilPenghitunganAdapter adapter = new ListHasilPenghitunganAdapter(this,keseluruhanPengujian.getListHasilPenghitungan(),R.layout.item_hasil_pengujian,COLOR_LINE, idNodeTujuan, idNodeAwal);
+        ListHasilPenghitunganAdapter adapter = new ListHasilPenghitunganAdapter(this,keseluruhanPenghitungan.getListHasilPenghitungan(),R.layout.item_hasil_pengujian,COLOR_LINE, idNodeTujuan, idNodeAwal);
         lvHasilPengujian.setAdapter(adapter);
         }
 }

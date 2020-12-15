@@ -23,8 +23,8 @@ public class MenuActivity extends AppCompatActivity {
         spLokasiAwal = (Spinner) findViewById(R.id.spLokasiAwal);
         spLokasiTujuan = (Spinner) findViewById(R.id.spLokasiTujuan);
 
-        settingSpinner(); //
-        MapManager.init(MenuActivity.this); //
+        settingSpinner();
+        MapManager.init(MenuActivity.this);
 
         btnCariRute.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
                 int posisiLokasiTujuanDipilih = spLokasiTujuan.getSelectedItemPosition();
                 Node nodeTujuanDipilih = MapManager.getListLokasiTujuan().get(posisiLokasiTujuanDipilih);
 
-                String algoritma = "dijkstra";
+                //String algoritma = "dijkstra";
 
                 if (posisiLokasiAwalDipilih == posisiLokasiTujuanDipilih){
                     Toast.makeText(MenuActivity.this, "Lokasi tujuan sama dengan lokasi awal.", Toast.LENGTH_SHORT).show();
@@ -45,7 +45,7 @@ public class MenuActivity extends AppCompatActivity {
                 else{
                     intent.putExtra("idNodeAwal", nodeAwalDipilih.getId());
                     intent.putExtra("idNodeTujuan", nodeTujuanDipilih.getId());
-                    intent.putExtra("algoritma", algoritma);
+                    //intent.putExtra("algoritma", algoritma);
                     startActivity(intent);
                 }
             }

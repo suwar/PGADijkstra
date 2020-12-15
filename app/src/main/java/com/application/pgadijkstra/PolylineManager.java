@@ -2,7 +2,6 @@ package com.application.pgadijkstra;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.PolylineOptions;
-
 import java.util.List;
 
 public class PolylineManager {
@@ -17,8 +16,6 @@ public class PolylineManager {
             polylineOptions.add(node.getPosisi());
         }
 
-
         map.addPolyline(polylineOptions);
-
     }
 }

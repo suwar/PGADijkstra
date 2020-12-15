@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class DbHelper extends SQLiteOpenHelper {
-    //The Android's default system path of your application database.
+
     private static String DB_PATH = "/data/data/com.application.pgadijkstra/databases/";
     private static String DB_NAME = "database.db";
     private SQLiteDatabase myDataBase;

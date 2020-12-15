@@ -3,27 +3,16 @@ package com.application.pgadijkstra;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-
 public class MapManager {
-    private static final double KECEPATAN_MAKSIMUM_0 = 11.111;  // 40 meter / second
-    private static final double KECEPATAN_MAKSIMUM_1 = 8.333;  //30 meter / second
-    private static final double KECEPATAN_MAKSIMUM_2 = 2.777;  // 10 meter / second
-
     private static ArrayList<Node> listLokasiAwal;
     private static ArrayList<Node> listLokasiTujuan;
-
     public static HashMap<Integer,Node> nodeMap;
     public static double[][] graph;
-    public static double[][] graphK;
-
 
     private static void initLokasiAwal(){
         listLokasiAwal = new ArrayList<>();
@@ -45,7 +34,6 @@ public class MapManager {
         listLokasiAwal.add(new Node(1697,"Tangga 2001",new LatLng(-4.038702709902436,103.19039914471335)));
         listLokasiAwal.add(new Node(2734,"Tebat Reban",new LatLng(-4.01646193148431,103.26170828438205)));
         listLokasiAwal.add(new Node(2285,"Tugu Rimau",new LatLng(-4.024529592657282,103.15448677699503)));
-
         listLokasiAwal.add(new Node(2719, "Hotel Dharma Karya", new LatLng(-4.003008199952546,103.2419765736004)));
         listLokasiAwal.add(new Node(1195, "Hotel Favour", new LatLng( -4.036654,103.255625)));
         listLokasiAwal.add(new Node(2711, "Hotel Grand ZZ", new LatLng(-4.012662841404377,103.24929362580322)));
@@ -58,7 +46,6 @@ public class MapManager {
         listLokasiAwal.add(new Node(1692, "Villa ex-MTQ", new LatLng( -4.039375,103.194157)));
         listLokasiAwal.add(new Node(1695, "Villa Gunung Gare", new LatLng( -4.037933,103.193063)));
         listLokasiAwal.add(new Node(2602, "Wisma Bara", new LatLng(-4.038917,103.219354)));
-
         listLokasiAwal.add(new Node(732, "Bandara Atung Bungsu", new LatLng( -4.02643925357983,103.38226789824428)));
         listLokasiAwal.add(new Node(2741, "CV Dharma Karya Travel", new LatLng( -4.022093,103.253513)));
         listLokasiAwal.add(new Node(2752, "CV Dimas Travel", new LatLng( -4.028595,103.258882)));
@@ -90,7 +77,6 @@ public class MapManager {
         listLokasiTujuan.add(new Node(1697,"Tangga 2001",new LatLng(-4.038702709902436,103.19039914471335)));
         listLokasiTujuan.add(new Node(2734,"Tebat Reban",new LatLng(-4.01646193148431,103.26170828438205)));
         listLokasiTujuan.add(new Node(2285,"Tugu Rimau",new LatLng(-4.024529592657282,103.15448677699503)));
-
         listLokasiTujuan.add(new Node(2719, "Hotel Dharma Karya", new LatLng(-4.003008199952546,103.2419765736004)));
         listLokasiTujuan.add(new Node(1195, "Hotel Favour", new LatLng( -4.036654,103.255625)));
         listLokasiTujuan.add(new Node(2711, "Hotel Grand ZZ", new LatLng(-4.012662841404377,103.24929362580322)));
@@ -103,7 +89,6 @@ public class MapManager {
         listLokasiTujuan.add(new Node(1692, "Villa ex-MTQ", new LatLng( -4.039375,103.194157)));
         listLokasiTujuan.add(new Node(1695, "Villa Gunung Gare", new LatLng( -4.037933,103.193063)));
         listLokasiTujuan.add(new Node(2602, "Wisma Bara", new LatLng(-4.038917,103.219354)));
-
         listLokasiTujuan.add(new Node(732, "Bandara Atung Bungsu", new LatLng( -4.02643925357983,103.38226789824428)));
         listLokasiTujuan.add(new Node(2741, "CV Dharma Karya Travel", new LatLng( -4.022093,103.253513)));
         listLokasiTujuan.add(new Node(2752, "CV Dimas Travel", new LatLng( -4.028595,103.258882)));
@@ -127,20 +112,6 @@ public class MapManager {
             initLokasiTujuan();
         }
         return listLokasiTujuan;
-    }
-
-    public static int getIdLokasi(String nama){
-        if(listLokasiTujuan == null) {
-            initLokasiTujuan();
-        }
-
-        for(int i=0; i<listLokasiTujuan.size(); i++){
-            Node nodeTujuan = listLokasiTujuan.get(i);
-            if(nodeTujuan.getNama().equalsIgnoreCase(nama))
-                return nodeTujuan.getId();
-        }
-
-        return -1;
     }
 
     public static String getNamaLokasiTujuan(int id){
@@ -187,7 +158,6 @@ public class MapManager {
             if(cursor.getCount()!=0){ //
                 Log.v("NodeMap","Cursor "+cursor.getCount());
                 graph = new double[cursor.getCount()+1][cursor.getCount()+1];
-                graphK = new double[cursor.getCount()+1][cursor.getCount()+1];
                 if(cursor.moveToFirst()){
                     do{
                         int id = cursor.getInt(0); //i = kolom
@@ -225,43 +195,15 @@ public class MapManager {
                         int id = cursor.getInt(0);
                         int idNodeAwal = cursor.getInt(1);
                         int idNodeTujuan = cursor.getInt(2);
-                        int status = cursor.getInt(3);
-                        int konstanta = cursor.getInt(4);
 
-                        Log.v("Graph-"+id,"Node ke-"+idNodeAwal+" ->" +idNodeTujuan + " Dengan Status: "+status + " Konstanta "+konstanta);
+                        Log.v("Graph-"+id,"Node ke-"+idNodeAwal+" ->" +idNodeTujuan);
 
                         Node nodeAwal = nodeMap.get(idNodeAwal);
                         Node nodeTujuan = nodeMap.get(idNodeTujuan);
 
                         double jarak = distance_in_kilometer(nodeAwal,nodeTujuan); // untuk menghitung jarak antar node
 
-                        //---Graph Tanpa Konstanta---
-                        double waktu = jarak / KECEPATAN_MAKSIMUM_0;
-                        graph[idNodeAwal][idNodeTujuan] = waktu;
-
-                        if(status == 0){
-                            graph[idNodeTujuan][idNodeAwal] = waktu;
-                        }
-
-
-                        //---Graph Menggunakan Konstanta---
-                        double kecepatan;
-                        if(konstanta >= 0 && konstanta <=3)
-                            kecepatan = KECEPATAN_MAKSIMUM_0;
-                        else if(konstanta >= 4 && konstanta <=6)
-                            kecepatan = KECEPATAN_MAKSIMUM_1;
-                        else
-                            kecepatan = KECEPATAN_MAKSIMUM_2;
-
-                        double waktuK = jarak/kecepatan;
-
-                        graphK[idNodeAwal][idNodeTujuan] = waktuK;
-                        //---- untuk membuat jalan one way
-                        if(status == 0){ // jika status 0 -> 2 arah / 1 -> 1 arah
-                            graphK[idNodeTujuan][idNodeAwal] = waktuK;
-                        }
-
-
+                        graph[idNodeAwal][idNodeTujuan] = jarak;
 
                     }while(cursor.moveToNext());
                 }

@@ -2,8 +2,6 @@ package com.application.pgadijkstra;
 
 import com.google.android.gms.maps.model.LatLng;
 
-
-
 public class Node {
     private int id;
     private String nama;
@@ -25,10 +23,6 @@ public class Node {
 
     public String getNama(){
         return nama;
-    }
-
-    public void setPosisi(LatLng posisi){
-        this.posisi = posisi;
     }
 
     public LatLng getPosisi(){

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class HasilPenghitungan {
     private ArrayList<Node> jalur;
-    private double jarakRute;
+    private double jarak;
 
     public HasilPenghitungan(){}
 
     public double getJarakRute(){
-        return jarakRute;
+        return jarak;
     }
 
     public void setJarakRute(double jarakRute){
-        this.jarakRute = jarakRute;
+        this.jarak = jarakRute;
     }
 
     public ArrayList<Node> getJalur() {
