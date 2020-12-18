@@ -40,7 +40,7 @@ public class MapManager {
         listLokasiAwal.add(new Node(2718, "Hotel Mirasa", new LatLng(-4.007352171809295,103.24516948530946)));
         listLokasiAwal.add(new Node(2704, "Hotel Telaga Biru", new LatLng( -4.019739,103.251013)));
         listLokasiAwal.add(new Node(2745, "Kanawa Guest House", new LatLng( -4.022624,103.252826)));
-        listLokasiAwal.add(new Node(2307, "Putri Sriwijaya Resort", new LatLng( -4.024872,103.180353)));
+        listLokasiAwal.add(new Node(2308, "Putri Sriwijaya Resort", new LatLng(  -4.024856,	103.180363)));
         listLokasiAwal.add(new Node(353, "Villa Aldeoz",new LatLng(-4.084310590286288,103.35108612013312)));
         listLokasiAwal.add(new Node(2562, "Villa Dempo Flower", new LatLng(-4.03559097720569,103.19539055229461)));
         listLokasiAwal.add(new Node(1692, "Villa ex-MTQ", new LatLng( -4.039375,103.194157)));
@@ -195,8 +195,9 @@ public class MapManager {
                         int id = cursor.getInt(0);
                         int idNodeAwal = cursor.getInt(1);
                         int idNodeTujuan = cursor.getInt(2);
+                        int status = cursor.getInt(3);
 
-                        Log.v("Graph-"+id,"Node ke-"+idNodeAwal+" ->" +idNodeTujuan);
+                        Log.v("Graph-"+id,"Node ke-"+idNodeAwal+" -> " +idNodeTujuan);
 
                         Node nodeAwal = nodeMap.get(idNodeAwal);
                         Node nodeTujuan = nodeMap.get(idNodeTujuan);
@@ -204,6 +205,10 @@ public class MapManager {
                         double jarak = distance_in_kilometer(nodeAwal,nodeTujuan); // untuk menghitung jarak antar node
 
                         graph[idNodeAwal][idNodeTujuan] = jarak;
+
+                        if(status == 0){
+                            graph[idNodeTujuan][idNodeAwal] = jarak;
+                        }
 
                     }while(cursor.moveToNext());
                 }
