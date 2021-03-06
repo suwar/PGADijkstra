@@ -40,7 +40,7 @@ public class MapManager {
         listLokasiAwal.add(new Node(2718, "Hotel Mirasa", new LatLng(-4.007352171809295,103.24516948530946)));
         listLokasiAwal.add(new Node(2704, "Hotel Telaga Biru", new LatLng( -4.019739,103.251013)));
         listLokasiAwal.add(new Node(2745, "Kanawa Guest House", new LatLng( -4.022624,103.252826)));
-        listLokasiAwal.add(new Node(2308, "Putri Sriwijaya Resort", new LatLng(  -4.024856,	103.180363)));
+        listLokasiAwal.add(new Node(2308, "Putri Sriwijaya Resort", new LatLng(  -4.024872,	103.180353)));
         listLokasiAwal.add(new Node(353, "Villa Aldeoz",new LatLng(-4.084310590286288,103.35108612013312)));
         listLokasiAwal.add(new Node(2562, "Villa Dempo Flower", new LatLng(-4.03559097720569,103.19539055229461)));
         listLokasiAwal.add(new Node(1692, "Villa ex-MTQ", new LatLng( -4.039375,103.194157)));
@@ -54,7 +54,7 @@ public class MapManager {
         listLokasiAwal.add(new Node(2743, "PO Sinar Dempo Bus", new LatLng( -4.023012,103.253471)));
         listLokasiAwal.add(new Node(2705, "PO Telaga Biru Bus & Travel", new LatLng( -4.019236,103.251697)));
         listLokasiAwal.add(new Node(2701, "PO Telaga Indah Armada", new LatLng( -4.020615,103.248625)));
-        listLokasiAwal.add(new Node(2683, "Terminal Bus Nendagung", new LatLng(  -4.026174,103.238405)));
+        listLokasiAwal.add(new Node(2683, "Terminal Bus Nendagung", new LatLng( -4.026138,103.238525)));
     }
 
     private static void initLokasiTujuan(){ //inisialisasi data lokasi tujuan
@@ -83,7 +83,7 @@ public class MapManager {
         listLokasiTujuan.add(new Node(2718, "Hotel Mirasa", new LatLng(-4.007352171809295,103.24516948530946)));
         listLokasiTujuan.add(new Node(2704, "Hotel Telaga Biru", new LatLng( -4.019739,103.251013)));
         listLokasiTujuan.add(new Node(2745, "Kanawa Guest House", new LatLng( -4.022624,103.252826)));
-        listLokasiTujuan.add(new Node(2307, "Putri Sriwijaya Resort", new LatLng( -4.024872,103.180353)));
+        listLokasiTujuan.add(new Node(2308, "Putri Sriwijaya Resort", new LatLng(  -4.024872,	103.180353)));
         listLokasiTujuan.add(new Node(353, "Villa Aldeoz",new LatLng(-4.084310590286288,103.35108612013312)));
         listLokasiTujuan.add(new Node(2562, "Villa Dempo Flower", new LatLng(-4.03559097720569,103.19539055229461)));
         listLokasiTujuan.add(new Node(1692, "Villa ex-MTQ", new LatLng( -4.039375,103.194157)));
@@ -97,7 +97,7 @@ public class MapManager {
         listLokasiTujuan.add(new Node(2743, "PO Sinar Dempo Bus", new LatLng( -4.023012,103.253471)));
         listLokasiTujuan.add(new Node(2705, "PO Telaga Biru Bus & Travel", new LatLng( -4.019236,103.251697)));
         listLokasiTujuan.add(new Node(2701, "PO Telaga Indah Armada", new LatLng( -4.020615,103.248625)));
-        listLokasiTujuan.add(new Node(2683, "Terminal Bus Nendagung", new LatLng(  -4.026174,103.238405)));
+        listLokasiTujuan.add(new Node(2683, "Terminal Bus Nendagung", new LatLng( -4.026138,103.238525)));
     }
 
     public static ArrayList<Node> getListLokasiAwal(){ // untuk membuat ListLokasiAwal pertama

@@ -67,6 +67,7 @@ public class AlgoritmaDijkstra {
     }
 
     public static HasilKeseluruhanPenghitungan searchPath(double[][] graph, int idNodeAwal, int idNodeTujuan){
+        long startTime = System.currentTimeMillis();
         jarak = 0;
         double[] cost; //Untuk mencatat cost
         boolean[] isVisited; //untuk mencatat node yang sudah dikunjungi
@@ -87,13 +88,19 @@ public class AlgoritmaDijkstra {
             ArrayList<Node> jalur = buatJalur(parents, idNodeAwal, idNodeTujuan);
 
             //---Hasil Penghitungan---
+
             HasilPenghitungan hasilPenghitungan = new HasilPenghitungan();
             hasilPenghitungan.setJalur(jalur); // untuk membuat jalur
             hasilPenghitungan.setJarakRute(jarak); // jarak tempuh
 
-           listHasilPenghitungan.add(hasilPenghitungan);
+            long endTime = System.currentTimeMillis();
+            long waktuPencarian = endTime - startTime;
 
-        HasilKeseluruhanPenghitungan hasilKeseluruhanPenghitungan = new HasilKeseluruhanPenghitungan(listHasilPenghitungan);
+            hasilPenghitungan.setWaktuPencarian(waktuPencarian);
+
+            listHasilPenghitungan.add(hasilPenghitungan);
+
+            HasilKeseluruhanPenghitungan hasilKeseluruhanPenghitungan = new HasilKeseluruhanPenghitungan(listHasilPenghitungan, waktuPencarian, jarak);
 
         return hasilKeseluruhanPenghitungan;
     }

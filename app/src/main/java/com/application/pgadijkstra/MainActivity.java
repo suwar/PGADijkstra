@@ -30,7 +30,6 @@ import com.google.android.gms.tasks.Task;
 
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
-
     private static final LatLng PagarAlam = new LatLng( -4.066010, 103.268494);
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -105,26 +104,28 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION};
 
-        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
                     COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                mLocationPermissionsGranted = true;
-                initMap();
-            }else{
-                ActivityCompat.requestPermissions(this,
+                    mLocationPermissionsGranted = true;
+                    initMap();
+                }
+                else{
+                    ActivityCompat.requestPermissions(this,
                         permissions,
                         LOCATION_PERMISSION_REQUEST_CODE);
+                    }
             }
-        }else{
-            ActivityCompat.requestPermissions(this,
+            else{
+                ActivityCompat.requestPermissions(this,
                     permissions,
                     LOCATION_PERMISSION_REQUEST_CODE);
-        }
+                }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
         Log.d(TAG, "onRequestPermissionsResult: called.");
         mLocationPermissionsGranted = false;
 
@@ -142,7 +143,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     mLocationPermissionsGranted = true;
                     //initialize our map
                     initMap();
-
                 }
             }
         }
@@ -150,12 +150,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
-
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         try{
             if(mLocationPermissionsGranted){
-
                 final Task location = mFusedLocationProviderClient.getLastLocation();
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
@@ -165,14 +163,16 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                             Location currentLocation = (Location) task.getResult();
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), MY_LOCATION_ZOOM,
                                     "My Location");
-                        }else{
+                        }
+                        else{
                             Log.d(TAG, "onComplete: current location is null");
                             Toast.makeText(MainActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
-        }catch (SecurityException e){
+        }
+        catch (SecurityException e){
             Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
         }
     }

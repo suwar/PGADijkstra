@@ -5,11 +5,10 @@ import java.util.ArrayList;
 public class HasilPenghitungan {
     private ArrayList<Node> jalur;
     private double jarak;
+    private long waktuPencarian;
 
-    public HasilPenghitungan(){}
-
-    public double getJarakRute(){
-        return jarak;
+    public HasilPenghitungan(){
+        this.waktuPencarian = getWaktuPencarian();
     }
 
     public void setJarakRute(double jarakRute){
@@ -22,5 +21,13 @@ public class HasilPenghitungan {
 
     public void setJalur(ArrayList<Node> jalur) {
         this.jalur = jalur;
+    }
+
+    public long getWaktuPencarian(){
+        return waktuPencarian;
+    }
+
+    public void setWaktuPencarian(long waktuPencarian){
+        this.waktuPencarian = waktuPencarian;
     }
 }
